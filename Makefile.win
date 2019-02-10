@@ -5,8 +5,8 @@ CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
 RES      = jogoPacman_private.res
-OBJ      = pacman.o $(RES)
-LINKOBJ  = pacman.o $(RES)
+OBJ      = jogador.o mapa.o $(RES)
+LINKOBJ  = jogador.o mapa.o $(RES)
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -25,8 +25,11 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-pacman.o: pacman.c
-	$(CC) -c pacman.c -o pacman.o $(CFLAGS)
+jogador.o: jogador.c
+	$(CC) -c jogador.c -o jogador.o $(CFLAGS)
+
+mapa.o: mapa.c
+	$(CC) -c mapa.c -o mapa.o $(CFLAGS)
 
 jogoPacman_private.res: jogoPacman_private.rc 
 	$(WINDRES) -i jogoPacman_private.rc --input-format=rc -o jogoPacman_private.res -O coff 
